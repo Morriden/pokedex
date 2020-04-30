@@ -1,68 +1,98 @@
 import React, { Component } from 'react'
 import request from 'superagent';
 import PokemonList from './PokemonList.js'
+import app from './App.css'
 
 export default class App extends Component {
 
 state = {
-  searchType: null,
-  searchName: null,
+  search: '',
+  drowdown: 'pokemon',
   data: [],
 }
 
   
-  handleNameChange = (e) => {
-    const value = e.target.value;
-    this.setState({ searchName: value});
-    
-  }
+handleDropDownChange = (e) => {
+  const value = e.target.value;
+  this.setState({ dropdown: value});
+  console.log(value, '1')
+  
+}
 
-  handleTypeChange = (e) => {
+// handleDropDown2Change = (e) => {
+//   const value = e.target.value;
+//   this.setState({ dropdown2: value});
+//   console.log(value, '3')
+  
+// }
+  // Can I add in multiple updates in one handle change?
+  // handleChange = (e) => {
+  //   const value = e.target.value;
+  //   this.setState({ search: value});
+  //   this.setState({ searchType: value});
+  //   this.setState({ searchStat: value});
+  //   console.log(value, '1')
+    
+  // }
+
+  handleChange = (e) => {
     const value = e.target.value;
-    this.setState({ searchType: value});
+    this.setState({ search: value});
+    console.log(value, '2')
     
   }
 
   handleClick = async () => {
-    const searchName = this.state.searchName;
-    const fetchedData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${searchName}`);
-
+    const search = this.state.search;
+    // const searchStat = this.state.searchStat; //if else for different links on choices.
+    const fetchedData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.dropdown}=${search}`);
+    console.log(fetchedData)
     this.setState({ data: fetchedData.body.results })
 
   }
 
-  handleTypeClick = async () => {
-    const searchType = this.state.searchType;
-    const fetchedData2 = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?type=${searchType}`);
-    console.log(fetchedData2)
-    this.setState({ data: fetchedData2.body.results })
-  }
-
-
-
   render() {
+    console.log(this.state.data)
+
     return (
+      
       <main>
+          <section>
+              <select onChange={this.handleDropDownChange}>
+                <option value="pokemon">Filter by Pokemon</option>
+                <option value="type">Filter by Type</option>
+                <option value="attack">Filter by Attack</option>
+                <option value="defense">Filter by Defense</option>
+                </select>
+              </section>
+
+
+
         <div>
-          <input onChange={this.handleNameChange}/>
-          <button onClick={this.handleClick}>Find Pokemon by Name!</button>
-          <input onChange={this.handleTypeChange}/>
-          <button onClick={this.handleTypeClick}>Find Pokemon by Type!</button>
+            {(this.state.dropdown === 'pokemon') && <input onChange={this.handleChange}/>}
+            {(this.state.dropdown === 'type')  && <input onChange={this.handleChange}/>}
+            {(this.state.dropdown === 'attack')  && <input type='number' onChange={this.handleChange}/>}
+            {(this.state.dropdown === 'defense')  && <input type='number' onChange={this.handleChange}/>}
+            
+          <button onClick={this.handleClick}>Search</button>
           <PokemonList pokemon={this.state.data} />
         </div>
 
         <section>
           
-          <ul>
+          <ul className="list-container">
             {this.state.data.map(pokemon => (<li className="data-item" >
-              <h2>
+              <div>
+                  <div>
+                    <img 
+                      alt={pokemon.url_image}
+                      src={pokemon.url_image} />
+                  </div>
               <h3>{pokemon.pokemon}</h3>
-              <img 
-                    alt={pokemon.url_image}
-                    src={pokemon.url_image} />
-                
-              </h2>
               
+              <span>Type 1: {pokemon.type_1} Type 2: {pokemon.type_2}</span>
+              <span> Attack: {pokemon.attack} Defense: {pokemon.defense}</span>
+              </div>
 
 
             </li>))}
@@ -76,7 +106,3 @@ state = {
     )
   }
 }
-
-
-
-// const fetchedData = await request.get('https://alchemy-pokedex.herokuapp.com/api/pokedex/5cef3501ef6005a77cd4fd33')
