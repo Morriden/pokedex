@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`will come back with stuff 1`] = `
+<div>
+  <BrowserRouter>
+    <Switch>
+      <Route
+        exact={true}
+        path="/"
+        render={[Function]}
+      />
+    </Switch>
+  </BrowserRouter>
+</div>
+`;
+
+exports[`will come back without stuff 1`] = `
+<div>
+  <BrowserRouter>
+    <Switch>
+      <Route
+        exact={true}
+        path="/"
+        render={[Function]}
+      />
+    </Switch>
+  </BrowserRouter>
+</div>
+`;
