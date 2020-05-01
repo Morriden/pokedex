@@ -18,8 +18,8 @@ export default class DetailsPage extends Component {
 
     render() {
         return (
-            <div> 
-                Welcome to the detail page?
+            <div>
+                 <p>Details</p>
                 {
                 this.state.loading ?
                     <h1>Loading</h1>

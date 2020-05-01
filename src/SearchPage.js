@@ -13,9 +13,8 @@ state = {
 }
 
 async componentDidMount() {
-  const search = this.state.search;
-  const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.dropdown}=${search}`)
-  this.setState({ quotes: data.body.results })
+  const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex`)
+  this.setState({ data: data.body.results })
 }
 
   
@@ -44,26 +43,32 @@ handleDropDownChange = (e) => {
 
     return (
       
-      <main>
-          <section>
-              <select onChange={this.handleDropDownChange}>
-                <option value="pokemon">Filter by Pokemon</option>
-                <option value="type">Filter by Type</option>
-                <option value="attack">Filter by Attack</option>
-                <option value="defense">Filter by Defense</option>
-                </select>
-              </section>
-              <div>
+        <main>
+          <header>Pokedex</header>
+          <body>
+            <div className="search-area"> 
+                <div>
                   {(this.state.dropdown === 'pokemon') && <input onChange={this.handleChange}/>}
                   {(this.state.dropdown === 'type')  && <input onChange={this.handleChange}/>}
                   {(this.state.dropdown === 'attack')  && <input type='number' onChange={this.handleChange}/>}
                   {(this.state.dropdown === 'defense')  && <input type='number' onChange={this.handleChange}/>}
                   
-                <button onClick={this.handleClick}>Search</button>
+                
+            </div>
+              <button onClick={this.handleClick}>Search</button>  
+              <select onChange={this.handleDropDownChange}>
+                <option value="pokemon">Filter by Pokemon</option>
+                <option value="type">Filter by Type</option>
+                <option value="attack">Filter by Attack</option>
+                <option value="defense">Filter by Defense</option>
+              </select>
+              
+            </div>    
+          <div className="pokemon-area">
                 <PokemonUL pokemon={this.state.data} />
-              </div>
-      
-      </main>
+          </div>
+          </body>
+        </main>
     )
   }
 }  
