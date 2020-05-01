@@ -19,26 +19,3 @@ export default class SearchSection extends Component {
         )
     }
 }
-
-
-{/* <div>
-<header>Pokedex</header>
-<div className="search-area"> 
-    <div>
-        {(this.state.dropdown === 'pokemon') && <input onChange={this.handleChange}/>}
-        {(this.state.dropdown === 'type')  && <input onChange={this.handleChange}/>}
-        {(this.state.dropdown === 'attack')  && <input type='number' onChange={this.handleChange}/>}
-        {(this.state.dropdown === 'defense')  && <input type='number' onChange={this.handleChange}/>}
-    </div>
-<button onClick={this.handleClick}>Search</button>  
-<select onChange={this.handleDropDownChange}>
-    <option value="pokemon">Filter by Pokemon</option>
-    <option value="type">Filter by Type</option>
-    <option value="attack">Filter by Attack</option>
-    <option value="defense">Filter by Defense</option>
-</select>
-
-</div>    
-</div> */}
-                    
-               

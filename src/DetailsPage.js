@@ -28,9 +28,6 @@ export default class DetailsPage extends Component {
                     :
                     <PokemonList pokemon={this.state.data} />
                 }
-               
-                
-            
             </div>
         )
     }

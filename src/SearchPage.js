@@ -43,8 +43,6 @@ handleDropDownChange = (e) => {
     console.log(this.state.data)
 
     return (
-
-      
       <body> 
         <header>Pokedex</header>   
           <main>
@@ -56,7 +54,6 @@ handleDropDownChange = (e) => {
           <div className="pokemon-area">
                 <PokemonUL pokemon={this.state.data} />
           </div>
-          
         </main>
       </body>
     )
