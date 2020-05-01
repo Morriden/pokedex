@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`will come back with stuff 1`] = `
+<div
+  className="search-area"
+>
+  <input />
+  <button>
+    Search
+  </button>
+  <select>
+    <option
+      value="pokemon"
+    >
+      Filter by Pokemon
+    </option>
+    <option
+      value="type"
+    >
+      Filter by Type
+    </option>
+    <option
+      value="attack"
+    >
+      Filter by Attack
+    </option>
+    <option
+      value="defense"
+    >
+      Filter by Defense
+    </option>
+  </select>
+</div>
+`;
+
+exports[`will come back without stuff 1`] = `
+<div
+  className="search-area"
+>
+  <input />
+  <button>
+    Search
+  </button>
+  <select>
+    <option
+      value="pokemon"
+    >
+      Filter by Pokemon
+    </option>
+    <option
+      value="type"
+    >
+      Filter by Type
+    </option>
+    <option
+      value="attack"
+    >
+      Filter by Attack
+    </option>
+    <option
+      value="defense"
+    >
+      Filter by Defense
+    </option>
+  </select>
+</div>
+`;

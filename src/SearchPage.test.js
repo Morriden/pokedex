@@ -1,17 +1,17 @@
 import React from 'react';
+import SearchPage from './App.js';
 import { shallow } from 'enzyme';
-import PokemonList from './PokemonList.js';
 // import renderer from 'react-test-renderer';
 
 test('will come back without stuff', () => {
-    const wrapper = shallow(<PokemonList />)
+    const wrapper = shallow(<SearchPage />)
 
    expect(wrapper).toMatchSnapshot();
 
 });
 
 test('will come back with stuff', () => {
-    const wrapper = shallow(<PokemonList name="some name"/>)
+    const wrapper = shallow(<SearchPage name="some name"/>)
 
    expect(wrapper).toMatchSnapshot();
 
