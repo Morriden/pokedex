@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import request from 'superagent'
 import './App.css'
 import PokemonUL from './PokemonUL.js'
+import SearchSection from './SearchSection.js'
 
 export default class SearchPage extends Component {
 
@@ -16,14 +17,15 @@ async componentDidMount() {
   const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex`)
   this.setState({ data: data.body.results })
 }
-
   
 handleDropDownChange = (e) => {
   const value = e.target.value;
   this.setState({ dropdown: value});
+  
 }
 
   handleChange = (e) => {
+    
     const value = e.target.value;
     this.setState({ search: value});
   }
@@ -35,40 +37,28 @@ handleDropDownChange = (e) => {
     console.log(fetchedData)
     this.setState({ loading: false })
     this.setState({ data: fetchedData.body.results })
-
   }
 
   render() {
     console.log(this.state.data)
 
     return (
+
       
-        <main>
-          <header>Pokedex</header>
-          <body>
-            <div className="search-area"> 
-                <div>
-                  {(this.state.dropdown === 'pokemon') && <input onChange={this.handleChange}/>}
-                  {(this.state.dropdown === 'type')  && <input onChange={this.handleChange}/>}
-                  {(this.state.dropdown === 'attack')  && <input type='number' onChange={this.handleChange}/>}
-                  {(this.state.dropdown === 'defense')  && <input type='number' onChange={this.handleChange}/>}
-                  
-                
-            </div>
-              <button onClick={this.handleClick}>Search</button>  
-              <select onChange={this.handleDropDownChange}>
-                <option value="pokemon">Filter by Pokemon</option>
-                <option value="type">Filter by Type</option>
-                <option value="attack">Filter by Attack</option>
-                <option value="defense">Filter by Defense</option>
-              </select>
-              
-            </div>    
+      <body> 
+        <header>Pokedex</header>   
+          <main>
+              <SearchSection
+            CallBackhandleChange={this.handleChange}
+            CallBackhandleDropDownChange={this.handleDropDownChange}
+            CallBackhandleClick={this.handleClick}
+          /> 
           <div className="pokemon-area">
                 <PokemonUL pokemon={this.state.data} />
           </div>
-          </body>
+          
         </main>
+      </body>
     )
   }
 }  
