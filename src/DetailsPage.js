@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import request from 'superagent'
 import PokemonList from './PokemonList.js'
+import { Link } from 'react-router-dom';
 
 export default class DetailsPage extends Component {
     state = {
@@ -19,6 +20,7 @@ export default class DetailsPage extends Component {
     render() {
         return (
             <div>
+                <Link to={'/'}>Back to Pokidex!</Link>
                  <p>Details</p>
                 {
                 this.state.loading ?
