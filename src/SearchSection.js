@@ -8,7 +8,7 @@ export default class SearchSection extends Component {
                         
                 <input onChange={this.props.CallBackhandleChange}/>
                 <button onClick={this.props.CallBackhandleClick}>Search</button>  
-                <select onChange={this.props.CallBackhandleDropDownChange}>
+                <select value={this.props.selectedFilter} onChange={this.props.CallBackhandleDropDownChange}>
                     <option value="pokemon">Filter by Pokemon</option>
                     <option value="type">Filter by Type</option>
                     <option value="attack">Filter by Attack</option>

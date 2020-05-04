@@ -23,15 +23,16 @@ state = {
 async componentDidMount() {
   const searchParams = new URLSearchParams(window.location.search)
   const search = searchParams.get('search');
+  const filter = searchParams.get('dropdown')
 
-  this.setState( {search: search});
+  this.setState( {search, dropdown: filter});
 
   if (search){
     let page = 1;
     if (searchParams.get('page')){
       page = searchParams.get('page');
     }
-    const fetchedData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.dropdown}=${search}&page=${page}`)
+    const fetchedData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${filter || this.state.dropdown}=${search}&page=${page}`)
     const data = fetchedData.body.results;
     const info = fetchedData.body.info;
     this.setState({ data: data, info: info })
@@ -86,7 +87,7 @@ handleDropDownChange = (e) => {
           Pokedex
           {this.state.page && <button onClick={this.routeToNextPage}>Next</button>}
         </header>    <main>
-              <SearchSection
+              <SearchSection selectedFilter={this.state.dropdown}
             CallBackhandleChange={this.handleChange}
             CallBackhandleDropDownChange={this.handleDropDownChange}
             CallBackhandleClick={this.handleClick}
