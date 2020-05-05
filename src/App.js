@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import {
+    BrowserRouter as Router, 
+    Route, 
+    Switch,
+} from "react-router-dom";
+import SearchPage from './SearchPage.js';
+import DetailsPage from './DetailsPage.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default class App extends Component {
+    render() {
+        return (
+            <div className='header'>
+                <div>
+                <h2>Gotta Catch 'Em All</h2>
+                <p>By: Erik Ford</p>
+            </div>
+                <Router>
+                    <Switch>
+                        <Route 
+                            path="/" 
+                            exact
+                            render={(routerProps) => <SearchPage {...routerProps} />} 
+                        />
+                        <Route 
+                            path="/pokemon/:pokemon" 
+                            render={(routerProps) => <DetailsPage {...routerProps} />} 
+                        />
+                    </Switch>
+                </Router>
+            </div>
+        )
+    }
 }
-
-export default App;
