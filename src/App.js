@@ -11,10 +11,11 @@ import DetailsPage from './DetailsPage.js';
 export default class App extends Component {
     render() {
         return (
-            <div>
+            <div className='header'>
                 <div>
-                    Header
-                </div>
+                <h2>Gotta Catch 'Em All</h2>
+                <p>By: Erik Ford</p>
+            </div>
                 <Router>
                     <Switch>
                         <Route 

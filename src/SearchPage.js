@@ -95,9 +95,12 @@ handleDropDownChange = (e) => {
     return (
       <body> 
         <header>
-          {!this.state.hidePrevious && <button onClick={this.routeToPreviousPage}>Previous</button>}
           Pokedex
+          <div>
+          {!this.state.hidePrevious && <button onClick={this.routeToPreviousPage}>Previous</button>}
+          
           {!this.state.hideNext && <button onClick={this.routeToNextPage}>Next</button>}
+          </div>
         </header>    <main>
               <SearchSection selectedFilter={this.state.dropdown}
             CallBackhandleChange={this.handleChange}
