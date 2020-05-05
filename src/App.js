@@ -12,6 +12,9 @@ export default class App extends Component {
     render() {
         return (
             <div>
+                <div>
+                    Header
+                </div>
                 <Router>
                     <Switch>
                         <Route 
